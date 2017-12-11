@@ -48,6 +48,7 @@ import org.openxmlformats.schemas.officeDocument.x2006.math.CTR;
  * @author Lava Kumar
  */
 public class Mathformula {
+    static long startTime = System.currentTimeMillis();
     static String val="";
     static File stylesheet = new File("C:\\Users\\Lava Kumar\\Desktop\\web programs\\Learn\\OMML2MML.XSL");
     static File stylesheet1=new File("C:\\Users\\Lava Kumar\\Desktop\\web programs\\Learn\\MML2OMML.XSL");
@@ -173,23 +174,23 @@ public class Mathformula {
             writer.close();
 
             Desktop.getDesktop().browse(new File("C:\\Users\\Lava Kumar\\Desktop\\web programs\\Learn\\result.html").toURI());
-             FileReader fr=new FileReader("C:\\Users\\Lava Kumar\\Desktop\\web programs\\Learn\\result.html");
-             BufferedReader br= new BufferedReader(fr);
-            StringBuilder content=new StringBuilder(1024);
-            String s="";
-            while((s=br.readLine())!=null)
-                {
-                content.append(s);
-                }
-             String k=content.toString();
-             OutputStream file = new FileOutputStream(new File("C:\\Users\\Lava Kumar\\Desktop\\web programs\\Learn\\Test.pdf"));
-             com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
-             PdfWriter pdfwriter = PdfWriter.getInstance(doc, file);
-             doc.open();
-             InputStream is = new ByteArrayInputStream(k.getBytes());
-             XMLWorkerHelper worker = XMLWorkerHelper.getInstance();
-             worker.parseXHtml(pdfwriter, doc, new StringReader(k));
-             doc.close();
+//              FileReader fr=new FileReader("C:\\Users\\Lava Kumar\\Desktop\\web programs\\Learn\\result.html");
+//              BufferedReader br= new BufferedReader(fr);
+//             StringBuilder content=new StringBuilder(1024);
+//             String s="";
+//             while((s=br.readLine())!=null)
+//                 {
+//                 content.append(s);
+//                 }
+//              String k=content.toString();
+//              OutputStream file = new FileOutputStream(new File("C:\\Users\\Lava Kumar\\Desktop\\web programs\\Learn\\Test.pdf"));
+//              com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
+//              PdfWriter pdfwriter = PdfWriter.getInstance(doc, file);
+//              doc.open();
+//              InputStream is = new ByteArrayInputStream(k.getBytes());
+//              XMLWorkerHelper worker = XMLWorkerHelper.getInstance();
+//              worker.parseXHtml(pdfwriter, doc, new StringReader(k));
+//              doc.close();
              
 //                ITextRenderer renderer = new ITextRenderer();
 //                renderer.setDocument(k);
@@ -203,6 +204,9 @@ public class Mathformula {
         } catch (Exception ex) {
             Logger.getLogger(Mathformula.class.getName()).log(Level.SEVERE, null, ex);
         }
+      long endTime   = System.currentTimeMillis();
+      long totalTime = endTime - startTime;
+      System.out.println("total time ="+totalTime+"  Milliseconds");  
         
     }
 }
